@@ -3,7 +3,7 @@ require "json"
 require "net/http"
 
 class FetchPlaylist
-  YOUTUBE_API_KEY='AIzaSyAeBDjvGW2JIG9oqELNEzBBsD6PJ8aXnYc'
+  YOUTUBE_API_KEY = Apikey.first.value
 
   def initialize(channel_id)
     @channel_id = channel_id

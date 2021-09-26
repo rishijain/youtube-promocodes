@@ -4,4 +4,6 @@ class Discountcode
   field :code
   field :creator
   field :channel_name
+
+  field :ignore
 end
