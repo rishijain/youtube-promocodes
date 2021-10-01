@@ -7,7 +7,7 @@ class DoAll
   def exec
     cl = FetchChannel.new(@url).exec
     pl = FetchPlaylist.new(cl).exec
-    FetchVideoDescription.new(pl).exec
+    FetchVideoDescription.new(cl, pl).exec
     Description.all.each { |d| FetchPromocodes.new(d).exec }
   end
 end
