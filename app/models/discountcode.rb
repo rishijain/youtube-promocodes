@@ -10,4 +10,6 @@ class Discountcode
   field :description_id
 
   field :ignore
+
+  validates :code, uniqueness: true, presence: true
 end

@@ -63,6 +63,7 @@ class FetchVideoDescription
   def create_descriptions
     @descriptions.each_with_index do |desc, index|
       puts index
+      Channel.find_or_create_by(channel_id: @channel_id, name: @video_owner_title)
       d = Description.create(info: desc, playlist_id: @playlist_id, channel_id: @channel_id, video_id: @video_ids[index], channel_title: @video_owner_title, published_at: @published_at[index])
       @description_ids << d.id
     end
