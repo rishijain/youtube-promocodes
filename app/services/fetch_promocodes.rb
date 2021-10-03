@@ -5,7 +5,7 @@ class FetchPromocodes
   end
 
   def exec
-    splitted_desc = @desc.info.split("\n")
+    splitted_desc = @desc.info.split("\n").select {|g| g if !g.blank? }
     splitted_desc.each_with_index do |each_desc, index|
       if @promo_patterns.any? { |h| each_desc.downcase.include?(h) }
         if each_desc.include?('http')
@@ -18,7 +18,15 @@ class FetchPromocodes
           code = each_desc
         end
 
-        Discountcode.find_or_create_by(code: code, video_id: @desc.video_id, playlist_id: @desc.playlist_id, published_at: @desc.published_at, channel_title: @desc.channel_title, channel_id: @desc.channel_id, description_id: @desc.id)
+        disc_code = Discountcode.find_by(code: code, channel_title: @desc.channel_title)
+
+        if disc_code.nil?
+          disc_code = Discountcode.create(code: code, video_id: @desc.video_id, playlist_id: @desc.playlist_id, published_at: @desc.published_at,
+                                          channel_title: @desc.channel_title, channel_id: @desc.channel_id, description_id: @desc.id.to_s)
+
+          disc_code.push_to_airtable
+
+        end
 
       end
     end

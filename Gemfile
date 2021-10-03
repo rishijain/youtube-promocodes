@@ -41,3 +41,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mongoid', '~> 6.0'
 gem 'bson_ext', '1.5.1'
+
+
+gem 'airtable'
