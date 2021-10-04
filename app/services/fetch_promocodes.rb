@@ -19,6 +19,8 @@ class FetchPromocodes
         end
 
         disc_code = Discountcode.find_by(code: code, channel_title: @desc.channel_title)
+        channel_obj = Channel.find_by name: @desc.channel_title
+        channel_obj.push_to_airtable if channel_obj && channel_obj.airtable_id.nil?
 
         if disc_code.nil?
           disc_code = Discountcode.create(code: code, video_id: @desc.video_id, playlist_id: @desc.playlist_id, published_at: @desc.published_at,
