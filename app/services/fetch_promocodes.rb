@@ -23,8 +23,9 @@ class FetchPromocodes
         channel_obj.push_to_airtable if channel_obj && channel_obj.airtable_id.nil?
 
         if disc_code.nil?
+          promourl = URI.extract(code).select {|g| g.include?('http')}[0] || nil
           disc_code = Discountcode.create(code: code, video_id: @desc.video_id, playlist_id: @desc.playlist_id, published_at: @desc.published_at,
-                                          channel_title: @desc.channel_title, channel_id: @desc.channel_id, description_id: @desc.id.to_s)
+                                          channel_title: @desc.channel_title, channel_id: @desc.channel_id, description_id: @desc.id.to_s, promourl: promourl)
 
           disc_code.push_to_airtable
 
