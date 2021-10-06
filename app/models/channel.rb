@@ -1,12 +1,4 @@
-class Channel
-  include Mongoid::Document
-
-  field :channel_id
-  field :name
-
-  field :airtable_id
-
-
+class Channel < ApplicationRecord
   def push_to_airtable
     return if self.airtable_id
     key = Apikey.find_by name: 'airtable'
