@@ -1,6 +1,3 @@
-class Apikey
-  include Mongoid::Document
+class Apikey < ApplicationRecord
 
-  field :name
-  field :value
 end
