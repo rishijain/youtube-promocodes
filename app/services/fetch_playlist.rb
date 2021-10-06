@@ -3,14 +3,14 @@ require "json"
 require "net/http"
 
 class FetchPlaylist
-  YOUTUBE_API_KEY = Apikey.first.value
 
   def initialize(channel_id)
     @channel_id = channel_id
+    @youtube_api_key = Apikey.first.value
   end
 
   def exec
-    url = URI("https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=#{@channel_id}&key=#{YOUTUBE_API_KEY}&maxResults=25")
+    url = URI("https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=#{@channel_id}&key=#{@youtube_api_key}&maxResults=25")
 
     puts  url
     https = Net::HTTP.new(url.host, url.port)

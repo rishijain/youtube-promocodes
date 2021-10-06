@@ -3,12 +3,12 @@ require "json"
 require "net/http"
 
 class FetchVideoDescription
-  YOUTUBE_API_KEY = Apikey.first.value
 
   def initialize(channel_id, playlist_id)
     @playlist_id = playlist_id
     @channel_id = channel_id
     @video_owner_title =  nil
+    @youtube_api_key = Apikey.first.value
   end
 
   def exec
@@ -31,7 +31,7 @@ class FetchVideoDescription
 
 
     while(!next_page_token.nil?)
-      path = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{@playlist_id}&key=#{YOUTUBE_API_KEY}&maxResults=25"
+      path = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{@playlist_id}&key=#{@youtube_api_key}&maxResults=25"
       path += "&pageToken=#{next_page_token}" if next_page_token != 'start'
       url = URI(path)
       puts url
