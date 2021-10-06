@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 5.2.6'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -39,8 +39,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'bson_ext', '1.5.1'
-
-
 gem 'airtable'
